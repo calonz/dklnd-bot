@@ -1,0 +1,25 @@
+{
+  "name": "duckland-bot",
+  "version": "1.0.0",
+  "description": "Duckland BOT",
+  "main": "bot.js",
+  "scripts": {
+    "test": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macesdev/dklnd-bot.git"
+  },
+  "author": "BEFOM Development Team, macesdev foundation",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/macesdev/dklnd-bot/issues"
+  },
+  "homepage": "https://github.com/macesdev/dklnd-bot#readme",
+  "dependencies": {
+    "discord-modals": "^1.3.7",
+    "discord.js": "^13.8.0",
+    "fs": "^0.0.1-security",
+    "node-fetch": "^3.2.6"
+  }
+}
