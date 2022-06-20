@@ -99,8 +99,8 @@ client.on("messageCreate", (message) => {
             { name: '> Resident Info', value: '!resident info _name_' },
             { name: '> Town Info', value: '!town info _name_' },
             { name: '> Nation Info', value: '!nation info _name_' },
-            { name: ' ', value: ' ' },
-            { name: 'Duckland Commands', value: ' ' },
+            { name: '‏‏‏‏‏‏‏‏', value: '‏‏‏‏‏‏‏‏' },
+            { name: 'Duckland Commands', value: '‏‏‏‏‏‏‏‏' },
             { name: '> Online Players', value: '!d online' },
             { name: '> All Players', value: '!d allplayers' },
 
