@@ -24,7 +24,21 @@ discordModals(client);
 
 client.on("ready", () => {
     console.log('Duckbot is landed!')
-    client.user.setStatus("quack quack quack I'm duck quack") 
+
+    const activities = [
+        "/n spawn Bahia",
+        "The BEFOM Team",
+        "/n spawn Bahia",
+        "/n spawn Bahia",
+    ];
+
+    setInterval(() => {
+        // generate random number between 1 and list length.
+        const randomIndex = Math.floor(Math.random() * (activities.length - 1) + 1);
+        const newActivity = activities[randomIndex];
+
+        client.user.setActivity(newActivity);
+      }, 5000);
 })
 
 client.on('guildMemberAdd', member => {
@@ -379,7 +393,7 @@ client.on("messageCreate", (message) => {
                                 const embed = new MessageEmbed()
                                 .setColor(null)
                                 .setAuthor("You are not a Bahia member.")
-                                .setDescription("We heard you are from **" + json_data["town"] + "** village! \n\n That's why we gave you the role of **Other**!")
+                                .setDescription("We heard you are from **" + json_data["town"] + "** village! \n That's why we gave you the role of **Other**!")
                                 message.react("👍")
                                 message.reply({ content: null, embeds: [embed]});
                             } else {
