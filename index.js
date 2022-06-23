@@ -7,7 +7,8 @@ const config = require("./app.json")
 const discordModals = require('discord-modals');
 const { timeStamp } = require("console");
 const { sensitiveHeaders } = require("http2");
-const mdb = require("maces_database")
+const mdb = require("maces_database");
+const { triggerAsyncId } = require("async_hooks");
 const { Modal, TextInputComponent, showModal, MessageActionRow} = discordModals;
 var regV = config.regV;
 var prefix = config.prefix;
@@ -22,7 +23,7 @@ const client = new Discord.Client({
 discordModals(client);
 
 client.on("ready", () => {
-    console.log('Duckland is landed!')
+    console.log('Duckbot is landed!')
     client.user.setStatus("quack quack quack I'm duck quack") 
 })
 
@@ -100,7 +101,7 @@ client.on("messageCreate", (message) => {
             { name: '> Town Info', value: '!town info _name_' },
             { name: '> Nation Info', value: '!nation info _name_' },
             { name: '‏‏‏‏‏‏‏‏', value: '‏‏‏‏‏‏‏‏' },
-            { name: 'Duckland Commands', value: '‏‏‏‏‏‏‏‏' },
+            { name: 'Duckbot Commands', value: '‏‏‏‏‏‏‏‏' },
             { name: '> Online Players', value: '!d online' },
             { name: '> All Players', value: '!d allplayers' },
 
@@ -171,7 +172,7 @@ client.on("messageCreate", (message) => {
         }
     }
 
-    if (command == "nation") {
+    /*if (command == "nation") {
         if (!args.length) {
             const embed = new MessageEmbed()
             .setColor(null)
@@ -201,6 +202,26 @@ client.on("messageCreate", (message) => {
                     
                     nationName = json_data["name"]
                     residents = json_data["residents"]
+                    towns = json_data["towns"]
+                    king = json_data["king"]
+                    capitalTown = json_data["capitalName"]
+                    capitalX = json_data["capitalX"]
+                    capitalZ = json_data["capitalZ"]
+                    area = json_data["area"]
+                    
+                    const embed = new MessageEmbed()
+                    .setColor(null)
+                    .setTitle(`${nationName} + (Nation)`)
+                    .setColor(null)
+                    .addFields(
+                        { name: 'Leader Player', value:  "```" + `${king}` + "```", inline: true},
+                        { name: 'Capitial Town', value: "```" + `${capitalTown}` + "```", inline: true},
+                        { name: 'Claimed Chunks', value: "```" + `${area}` + "```", inline: true },
+                        { name: 'Online Residents', value: "```" + `${area}` + "```"},
+                        { name: 'Claimed Chunks', value: "```" + `${area}` + "```"},
+                    )
+
+                    message.channel.send({ content: null, embeds: [embed]});
                 });
                 });
                 } catch(e) {
@@ -210,7 +231,7 @@ client.on("messageCreate", (message) => {
                     message.channel.send({ content: null, embeds: [embed]});
                 }
         }
-    }
+    }*/
 
     if (command == 'server') {
         if (!args.length) {
@@ -287,12 +308,34 @@ client.on("messageCreate", (message) => {
                     const json_data = JSON.parse(data);
     
                     if (json_data["name"] != undefined) {
-                        if (json_data["nation"] == "Russian_Empire") {
+
+                        if (json_data["nation"] == "Bahia") {
+                            if (json_data["rank"] == "Nation Leader") {
+                                const embed = new MessageEmbed()
+                                .setColor(null)
+                                .setAuthor("You are a Nation Leader.")
+                                .setDescription("We heard that he is the leader of the **" + json_data["nation"] +"**. \n For this I will give you the role of **Nation Leader**.")
+                                message.react("👍")
+                                message.reply({ content: null, embeds: [embed]});
+    
+                                message.guild.roles.fetch()
+                                let role = message.guild.roles.cache.find(role => role.id === '989556174972149760')
+                                message.member.roles.add(role)
+                                let roleUr = message.guild.roles.cache.find(role => role.id === '988171755455643648')
+                                message.member.roles.remove(roleUr)
+
+                                const embedInput = new MessageEmbed()
+                                .setColor(null)
+                                .setDescription(`<@${message.author.id}>, the nation leader of the **` + json_data["nation"] + `**, joined us!`)
+    
+                                const channel = client.channels.cache.get('988359360554094653');
+                                channel.send({ content: null, embeds: [embedInput]});
+                            }
                             if (json_data["rank"] == "Mayor") {
                                 const embed = new MessageEmbed()
                                 .setColor(null)
-                                .setAuthor("You are a Duckland member.")
-                                .setDescription("We heard that he is the mayor of the village **" + json_data["town"] +"**. \n\n For this I will give you the role of **Mayor**.")
+                                .setAuthor("You are a Bahia member.")
+                                .setDescription("We heard that he is the mayor of the village **" + json_data["town"] +"**. \n For this I will give you the role of **Mayor**.")
                                 message.react("👍")
                                 message.reply({ content: null, embeds: [embed]});
     
@@ -312,8 +355,8 @@ client.on("messageCreate", (message) => {
                             if (json_data["rank"] == "Resident") {
                                 const embed = new MessageEmbed()
                                 .setColor(null)
-                                .setAuthor("You are a Duckland member.")
-                                .setDescription("We heard that there is someone living in the village of **" + json_data["town"] +"**. \n\n For this I will give you the role of **Citizen**.")
+                                .setAuthor("You are a Bahia member.")
+                                .setDescription("We heard that there is someone living in the village of **" + json_data["town"] +"**. \n For this I will give you the role of **Citizen**.")
                                 message.react("👍")
                                 message.reply({ content: null, embeds: [embed]});
     
@@ -335,14 +378,14 @@ client.on("messageCreate", (message) => {
                             if (json_data["nation"] == "No Nation") {
                                 const embed = new MessageEmbed()
                                 .setColor(null)
-                                .setAuthor("You are not a Duckland member.")
+                                .setAuthor("You are not a Bahia member.")
                                 .setDescription("We heard you are from **" + json_data["town"] + "** village! \n\n That's why we gave you the role of **Other**!")
                                 message.react("👍")
                                 message.reply({ content: null, embeds: [embed]});
                             } else {
                                 const embed = new MessageEmbed()
                                 .setColor(null)
-                                .setAuthor("You are not a Duckland member.")
+                                .setAuthor("You are not a Bahai member.")
                                 .setDescription("We heard you are from **" + json_data["town"] + "** village, **" + json_data["nation"] + "**! \n\n That's why we gave you the role of **Other**!")
                                 message.react("👍")
                                 message.reply({ content: null, embeds: [embed]});
