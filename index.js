@@ -42,7 +42,7 @@ client.on("messageCreate", (message) => {
     const args = message.content.slice(prefix.length).trim().split(/ +/)
     const command = args.shift().toLowerCase();
 
-    if (command === 'clear') {
+    if (command == 'clear') {
         if (message.member.roles.cache.has('988127945749057557') || message.member.roles.cache.has('988170630014849194') || message.member.roles.cache.has('988170895963078687')) {        
 
             if (!args.length) {
@@ -85,14 +85,14 @@ client.on("messageCreate", (message) => {
 
     // help
 
-    if (command === "help") {
+    if (command == "help") {
         const help = new MessageEmbed()
         .setColor(null)
         .setTitle("Help Commands (Moderation)")
         .setDescription("")
         .setColor(null)
         .addFields(
-            { name: '> Queue', value: '!queue' },
+            { name: '> Server Status', value: '!server' },
             { name: '> Online Players', value: '!online' },
             { name: '> All Players', value: '!allplayers' },
             { name: '> Townless Players', value: '!townless' },
@@ -128,7 +128,7 @@ client.on("messageCreate", (message) => {
     
     // enableRegister
 
-    if (command === 'enableRegister') {
+    if (command == 'enableRegister') {
         if (message.member.roles.cache.has('988127945749057557') || message.member.roles.cache.has('988170630014849194') || message.member.roles.cache.has('988170895963078687')) {
             regV = 1;
             mdb.addData("regV", 1, "app.json")
@@ -146,12 +146,11 @@ client.on("messageCreate", (message) => {
             message.react("👎")
             message.reply({ content: null, embeds: [embed]});
         }
-
     }
 
     // disableRegister
 
-    if (command === 'disableRegister') {
+    if (command == 'disableRegister') {
         if (message.member.roles.cache.has('988127945749057557') || message.member.roles.cache.has('988170630014849194') || message.member.roles.cache.has('988170895963078687')) {
             regV = 0;
             mdb.addData("regV", 0, "app.json")
@@ -169,6 +168,107 @@ client.on("messageCreate", (message) => {
             .setDescription("To do this, you must have the *BEFOM, Admin, Mod* roles.")
             message.react("👍")
             message.reply({ content: null, embeds: [embed]});
+        }
+    }
+
+    if (command == "nation") {
+        if (!args.length) {
+            const embed = new MessageEmbed()
+            .setColor(null)
+            .setAuthor("Please specify a nation.")
+            message.channel.send({ content: null, embeds: [embed]});
+        } else if (args[0] != undefined) {
+            try {
+                let nationName = null;
+                let residents = null;
+                let towns = null;
+                let king = null;
+                let capitalTown = null;
+                let capitalX = null;
+                let capitalZ = null;
+                let area = null;
+    
+                let apiLink = "https://earthmc-api.herokuapp.com/api/v1/aurora/nations/" + args[0];
+                let req = https.get(apiLink, function(res) {
+                    let data = '',
+                    json_data;
+    
+                res.on('data', function(stream) {
+                    data += stream;
+                });
+                res.on('end', function() {
+                    const json_data = JSON.parse(data);
+                    
+                    nationName = json_data["name"]
+                    residents = json_data["residents"]
+                });
+                });
+                } catch(e) {
+                    const embed = new MessageEmbed()
+                    .setColor(null)
+                    .setAuthor("There was a problem communicating with the server.")
+                    message.channel.send({ content: null, embeds: [embed]});
+                }
+        }
+    }
+
+    if (command == 'server') {
+        if (!args.length) {
+            try {
+            let onlineStatus = null;
+            let queue = null;
+            let online = null; 
+            let maxPlayers = null;
+            let auroraPlayers = null;
+            let novaPlayers = null;
+
+            let apiLink = "https://earthmc-api.herokuapp.com/api/v1/serverinfo";
+            let req = https.get(apiLink, function(res) {
+                let data = '',
+                json_data;
+
+            res.on('data', function(stream) {
+                data += stream;
+            });
+            res.on('end', function() {
+                const json_data = JSON.parse(data);
+                if (json_data["serverOnline"] == true) {
+                    onlineStatus = "✅"
+                } else {
+                    onlineStatus = "Offline"
+                }
+                queue = json_data["queue"]
+                online = json_data["online"]
+                maxPlayers = json_data["max"]
+                novaPlayers = json_data["nova"]
+                auroraPlayers = json_data["aurora"]
+
+                if (onlineStatus == undefined || queue == undefined || online == undefined || maxPlayers == undefined || novaPlayers == undefined || auroraPlayers == undefined) {
+                    const embed = new MessageEmbed()
+                    .setColor(null)
+                    .setAuthor("There was a problem communicating with the server.")
+                    message.channel.send({ content: null, embeds: [embed]});
+                } else {
+                    const embed = new MessageEmbed()
+                    .setTitle("Server Status")
+                    .setColor(null)
+                    .setDescription("It gives information about the activity of the server." +
+                    `\n\n**Online ** | ${onlineStatus}`+
+                    `\n**Players in Queue** | ${queue}` +
+                    `\n\n**Total Players** | ${maxPlayers}/450` +
+                    `\n**Aurora Players** | ${auroraPlayers}/250 (${250-auroraPlayers} Free Plots!)`+
+                    `\n**Nova Players** | ${novaPlayers}/200 (${200-novaPlayers} Free Plots!)`)
+                    message.react("👍")
+                    message.reply({ content: null, embeds: [embed]});   
+                }
+            });
+            });
+            } catch(e) {
+                const embed = new MessageEmbed()
+                .setColor(null)
+                .setAuthor("There was a problem communicating with the server.")
+                message.channel.send({ content: null, embeds: [embed]});
+            }
         }
     }
 
