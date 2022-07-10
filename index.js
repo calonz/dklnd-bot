@@ -26,10 +26,10 @@ client.on("ready", () => {
     console.log('Duckbot is landed!')
 
     const activities = [
-        "/n spawn Bahia",
+        "/n spawn Angola",
         "The BEFOM Team",
-        "/n spawn Bahia",
-        "/n spawn Bahia",
+        "/n spawn Angola",
+        "/n spawn Angola",
     ];
 
     setInterval(() => {
@@ -323,7 +323,7 @@ client.on("messageCreate", (message) => {
     
                     if (json_data["name"] != undefined) {
 
-                        if (json_data["nation"] == "Bahia") {
+                        if (json_data["nation"] == "Angola") {
                             if (json_data["rank"] == "Nation Leader") {
                                 const embed = new MessageEmbed()
                                 .setColor(null)
@@ -348,7 +348,7 @@ client.on("messageCreate", (message) => {
                             if (json_data["rank"] == "Mayor") {
                                 const embed = new MessageEmbed()
                                 .setColor(null)
-                                .setAuthor("You are a Bahia member.")
+                                .setAuthor("You are a Angola member.")
                                 .setDescription("We heard that he is the mayor of the village **" + json_data["town"] +"**. \n For this I will give you the role of **Mayor**.")
                                 message.react("👍")
                                 message.reply({ content: null, embeds: [embed]});
@@ -369,7 +369,7 @@ client.on("messageCreate", (message) => {
                             if (json_data["rank"] == "Resident") {
                                 const embed = new MessageEmbed()
                                 .setColor(null)
-                                .setAuthor("You are a Bahia member.")
+                                .setAuthor("You are a Angola member.")
                                 .setDescription("We heard that there is someone living in the village of **" + json_data["town"] +"**. \n For this I will give you the role of **Citizen**.")
                                 message.react("👍")
                                 message.reply({ content: null, embeds: [embed]});
@@ -392,7 +392,7 @@ client.on("messageCreate", (message) => {
                             if (json_data["nation"] == "No Nation") {
                                 const embed = new MessageEmbed()
                                 .setColor(null)
-                                .setAuthor("You are not a Bahia member.")
+                                .setAuthor("You are not a Angola member.")
                                 .setDescription("We heard you are from **" + json_data["town"] + "** village! \n That's why we gave you the role of **Other**!")
                                 message.react("👍")
                                 message.reply({ content: null, embeds: [embed]});
