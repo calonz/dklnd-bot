@@ -1,0 +1,68 @@
+{
+    "version":1,
+    "books": [
+        {
+            "n":"Anna Karenina",
+            "w":"Tolstoy",
+            "p":75,
+            "b":"Yönetim",
+            "t":"29.12.2022"
+        },
+        {
+            "n":"Hep O Şarkı",
+            "w":"Yakup Kadrioğlu",
+            "p":104,
+            "b":"Yönetim",
+            "t":"29.12.2022"
+        },
+        {
+            "n":"Suç ve Ceza",
+            "w":"Dostoyevski",
+            "p":"  ",
+            "b":"Yönetim",
+            "t":"29.12.2022"
+        },
+        {
+            "n":"Fareler ve İnsanlar",
+            "w":"John Steinbeck",
+            "p":"  ",
+            "b":"Yönetim",
+            "t":"30.12.2022"
+        },
+        {
+            "n":"Tutunamayanlar",
+            "w":"Oğuz Atay",
+            "p":"  ",
+            "b":"Yönetim",
+            "t":"30.12.2022"
+        },
+        {
+            "n":"Anna Karenina",
+            "w":"Tolstoy",
+            "p":"  ",
+            "b":"Yönetim",
+            "t":"30.12.2022"
+        },
+        {
+            "n":"Şeker Portakalı",
+            "w":"Mauro de Vasconcelos",
+            "p":"  ",
+            "b":"Yönetim",
+            "t":"30.12.2022"
+        },
+        {
+            "n":"Karanlığın Yüreği",
+            "w":"Joseph Conrad",
+            "p":"  ",
+            "b":"Yönetim",
+            "t":"30.12.2022"
+        },
+        {
+            "n":"Şato",
+            "w":"Franz Kafka",
+            "p":"  ",
+            "b":"Yönetim",
+            "t":"30.12.2022"
+        }
+    ]
+}

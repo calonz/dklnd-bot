@@ -1,0 +1,97 @@
+{
+    "version":1,
+    "class": [
+        {
+            "name":"10/A Bilişim (Sınavlı)",
+            "students": [
+                {
+                    "name":"M. Ali BULUT",
+                    "no":579,
+                    "books": [
+                        {
+                            "name":"Hep O Şarkı",
+                            "writer":"Yakup Kadrioğlu",
+                            "date":"15.7.2022",
+                            "gived":"sAdmin"
+                        },
+                        {
+                            "name":"Anna Karenina",
+                            "writer":"Tolstoy",
+                            "date":"10.11.2022",
+                            "gived":"sAdmin"
+                        },
+                        {
+                            "name":"Tutunamayanlar",
+                            "writer":"Oğuz Atay",
+                            "date":"7.10.2022",
+                            "gived":"sAdmin"
+                        }
+                    ],
+                    "history": [
+                        {
+                            "name":"Şeker Portakalı",
+                            "writer":"José Mauro de Vasconcelos",
+                            "rdate":"13.20.2019",
+                            "date":"30.12.2022",
+                            "gived":"sAdmin"
+                        },
+                        {
+                            "name":"Şato",
+                            "writer":"Franz Kafka",
+                            "date":"7.10.2022",
+                            "gived":"sAdmin",
+                            "rdate":"30.12.2022"
+                        }
+                    ]
+                },
+                {
+                    "name":"Deneme Öğrenci",
+                    "no":333,
+                    "books": [
+                        {
+                            "name":"Gel Git..",
+                            "writer":"Prof. Dr. Yusuf Elibol",
+                            "date":"30.10.2022",
+                            "gived":"sAdmin"
+                        }
+                    ],
+                    "history": [
+                        {
+                            "name":"Geçmişe Dair",
+                            "writer":"Franz Kafka",
+                            "date":"12.8.2022",
+                            "rdate":"13.20.2019",
+                            "gived":"sAdmin"
+                        }
+                    ]
+                }
+            ]
+        },
+    {
+        "name":"10/B Bilişim (Sınavsız)",
+        "students": [
+            {
+                "name":"Deneme Öğrenci II",
+                "no":669,
+                "books": [
+                    {
+                        "name":"Kedilere Selam!",
+                        "writer":"Aşık Patisi Büyük",
+                        "date":"30.12.2022",
+                        "gived":"sadmin"
+                    }
+                    ],
+                    "history": [
+                        {
+                            "name":"Gel pisi pisi",
+                            "writer":"Şerefli Mahmut",
+                            "date":"12.8.2022",
+                            "rdate":"13.10.2019",
+                            "gived":"sadmin"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
