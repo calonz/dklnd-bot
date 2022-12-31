@@ -8,8 +8,8 @@ const net = require('net');
 const fs = require('fs');
 var server = net.createServer(); 
 var port = 2589;
-var bookFile = "C:\\Users\\maces\\Desktop\\books.json";
-var classFilePath = "C:\\Users\\maces\\Desktop\\student.json";
+var bookFile = "/root/server/data/books.json";
+var classFilePath = "/root/server/data/student.json";
 var pass = "mami1212";
 
 
